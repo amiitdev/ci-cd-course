@@ -14,3 +14,4 @@ export function createCharge(cardNumber, cents) {
   if (!isValidCard(cardNumber)) throw new Error("invalid card");
   return { id: "chg_" + cents, amount: cents, status: "succeeded" };
 }
+export const currency = "INR";
