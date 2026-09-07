@@ -1,0 +1,33 @@
+name: probe
+on:
+  push:
+    branches: ['feature/**']
+    tags: ['v*']
+    paths: ['src/**', '.github/workflows/**', 'index.js']
+  pull_request:
+    branches: [main]
+    paths: ['src/**', '.github/workflows/**']
+  workflow_dispatch:
+  schedule:
+    - cron: '30 3 * * 1'
+
+jobs:
+  who:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Which trigger am I?
+        run: |
+          echo "event    = ${{ github.event_name }}"
+          echo "ref      = ${{ github.ref }}  (${{ github.ref_type }})"
+          echo "ref_name = ${{ github.ref_name }}"
+      - name: PR details (empty for non-PR)
+        run: |
+          echo "head_ref = ${{ github.head_ref }}"
+          echo "pr_number= ${{ github.event.pull_request.number }}"
+      - name: Justify my existence (path-filter proof)
+        run: |
+          echo "changed files in this push:"
+          git diff --name-only HEAD^ HEAD | head -10
