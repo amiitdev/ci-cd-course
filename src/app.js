@@ -1,6 +1,6 @@
 import { randomBytes } from "node:crypto";
 
-export function start(port) { throw new Error(`nyi`);
+export function start(port) {
   return `server running on :${port}`;
 }
 
