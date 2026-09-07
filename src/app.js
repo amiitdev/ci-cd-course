@@ -1,9 +1,10 @@
-module.exports = {   // EDIT from main
-module.exports = {   // NAVBAR-FIX applied
-  start(port) { console.log("server running on :" + port); }
-};
+import { randomBytes } from "node:crypto";
 
-// --- login feature (feature/login branch) ---
-function login(user, pass) {
-  return user && pass ? "token-abc" : null;
+export function start(port) {
+  return `server running on :${port}`;
+}
+
+export function login(user, pass) {
+  if (!user || !pass) return null;
+  return "token-" + randomBytes(6).toString("hex");
 }
