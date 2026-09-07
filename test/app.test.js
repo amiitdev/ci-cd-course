@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { start, login } from "./src/app.js";
+import { start, login } from "../src/app.js";
 
 test("start returns the running server message", () => {
   assert.match(start(3000), /server running on :3000/);
